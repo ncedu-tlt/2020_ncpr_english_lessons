@@ -1,24 +1,21 @@
-# NuGet restore
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
-WORKDIR /src
-COPY Languages.API/*.sln .
-COPY Languages.API/*.csproj .
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
+WORKDIR Languages.API/
+
+# Copy csproj and restore as distinct layers
+COPY Languages.API/*.csproj ./
 RUN dotnet restore
-COPY . .
+
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+WORKDIR Languages.API/
+COPY --from=build-env Languages.API/out .
+ENTRYPOINT ["dotnet", "Api.dll"]
 
 # testing
-FROM build AS testing
-WORKDIR /src/Languages.API
-RUN dotnet build
-
-# publish
-FROM build AS publish
-WORKDIR /src/Languages.API
-RUN dotnet publish -c Release -o /src/publish
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
-WORKDIR /app
-COPY --from=publish /src/publish .
-# ENTRYPOINT ["dotnet", "Languages.API.dll"]
-# heroku uses the following
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Languages.API.dll
+# FROM build AS testing
+# WORKDIR Languages.API
+# RUN dotnet build

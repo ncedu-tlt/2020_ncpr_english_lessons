@@ -13,7 +13,7 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR Languages.API/
 COPY --from=build-env Languages.API/out .
-ENTRYPOINT ["dotnet", "Api.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Api.dll
 
 # testing
 # FROM build AS testing

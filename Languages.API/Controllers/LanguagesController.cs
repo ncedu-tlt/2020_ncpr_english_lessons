@@ -10,7 +10,7 @@ namespace Api.Controllers
     public class LanguagesController : Controller
     {
         [HttpGet]
-        public JsonResult Get()
+        public ActionResult<List<Language>> GetLanguages()
         {
             using (var db = new DataBaseContext())
             {
@@ -18,25 +18,43 @@ namespace Api.Controllers
                     .OrderBy(b => b.LanguageId)
                     .ToList();
                    
-                return Json(languages); ;
+                return languages;
             }
         }
 
-        [HttpPost("{title}")]
-        public ActionResult Get(string title)
+        [HttpGet("{id}")]
+        public ActionResult<Language> GetLanguageItem(long id)
+        {
+            using (var db = new DataBaseContext())
+            {
+                Language language = db.Languages
+                    .Where(l => l.LanguageId == id)
+                    .First();
+
+                if (language == null)
+                {
+                    return NotFound();
+                }
+
+                return language;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CreateLanguageItem([FromBody] Language language)
         {
             using (var db = new DataBaseContext())
             {
                 bool languageIsAlreadyExists = db.Languages
-                    .Where(l => l.Title.Equals(title))
+                    .Where(l => l.Title.Equals(language.Title))
                     .Count() > 0;
 
-                if (languageIsAlreadyExists) 
+                if (languageIsAlreadyExists)
                 {
                     return Conflict(); // 409 Conflict
                 }
 
-                db.Add(new Language { Title = title });
+                db.Add(language);
                 db.SaveChanges();
 
                 return Ok();

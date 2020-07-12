@@ -53,7 +53,8 @@ namespace Api
                                                 "<html>" +
                                                 "<body>" +
                                                 "<p>GET <a href='/api/languages'>/api/languages</a></p>" +
-                                                "<p>POST <a href='/api/languages'>/api/languages/newLanguage</a></p>" +
+                                                "<p>GET <a href='/api/languages/1'>/api/languages/1</a></p>" +
+                                                "<p>POST <a href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\"})</p>" +
                                                 "</body>" +
                                                 "</html>";
     }

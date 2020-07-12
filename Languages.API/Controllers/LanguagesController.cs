@@ -57,7 +57,7 @@ namespace Api.Controllers
                 db.Add(language);
                 db.SaveChanges();
 
-                return Ok();
+                return Created();
             }
         }
     }

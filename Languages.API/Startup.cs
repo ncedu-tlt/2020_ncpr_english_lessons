@@ -52,9 +52,10 @@ namespace Api
         private const string ROOT_PAGE_HTML = "<!DOCTYPE html>" +
                                                 "<html>" +
                                                 "<body>" +
-                                                "<p>GET <a href='/api/languages'>/api/languages</a></p>" +
-                                                "<p>GET <a href='/api/languages/1'>/api/languages/1</a></p>" +
-                                                "<p>POST <a href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\"})</p>" +
+                                                "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a></p>" +
+                                                "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/languages/1'>/api/languages/1</a></p>" +
+                                                "<p>POST <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\"})</p>" +
+                                                "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/reset'>/api/reset</a></p>" +
                                                 "</body>" +
                                                 "</html>";
     }

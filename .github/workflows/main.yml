@@ -6,7 +6,7 @@ on:
     - backend/master
 
 jobs:
-  build_icolors:
+  build_backend:
     runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v1
@@ -15,7 +15,6 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         APP_NAME: ${{ 'ncpr-2020-english-backend' }}
       run: |
-        cd ./ASPNetCoreLabs/HerokuContainer
         docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
         heroku container:push web -a $APP_NAME
         heroku container:release web -a $APP_NAME

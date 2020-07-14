@@ -23,12 +23,18 @@ namespace Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddEntityFrameworkSqlite().AddDbContext<DataBaseContext>();
-            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Add CORS header
+            app.Use((context, next) =>
+            {
+                context.Response.Headers["Access-Control-Allow-Origin"] = "*";
+                return next.Invoke();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,8 +54,6 @@ namespace Api
                     await context.Response.WriteAsync(ROOT_PAGE_HTML);
                 });
             });
-
-            app.UseCors(builder => builder.AllowAnyOrigin());
         }
             
         private const string ROOT_PAGE_HTML = "<!DOCTYPE html>" +

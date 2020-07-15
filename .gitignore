@@ -69,6 +69,9 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+#Visual Studio
 **/bin
 **/obj
 **/database.db
+**/.vs
+**/*.csproj.user

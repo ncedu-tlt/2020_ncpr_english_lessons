@@ -61,18 +61,18 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public ActionResult UpdateLanguageItem([FromBody] Language language)
         {
             using (var db = new DataBaseContext())
             {
                 bool languageAlreadyExists = db.Languages
-                    .Where(l => l.Title.Equals(language.Title))
+                    .Where(l => l.LanguageId.Equals(language.LanguageId))
                     .Count() > 0;
 
                 if (languageAlreadyExists)
                 {
-                    db.Language.Update(language);
+                    db.Languages.Update(language);
                     db.SaveChanges();
                     return Ok();
                 }
@@ -85,18 +85,18 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpDelete]
         public ActionResult DeleteLanguageItem([FromBody] Language language)
         {
             using (var db = new DataBaseContext())
             {
                 bool languageAlreadyExists = db.Languages
-                    .Where(l => l.Title.Equals(language.Title))
+                    .Where(l => l.LanguageId.Equals(language.LanguageId))
                     .Count() > 0;
 
                 if (languageAlreadyExists)
                 {
-                    db.Language.Remove(language);
+                    db.Languages.Remove(language);
                     db.SaveChanges();
                     return Ok();
                 }

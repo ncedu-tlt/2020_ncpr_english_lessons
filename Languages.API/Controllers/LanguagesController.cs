@@ -40,7 +40,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost] // Create request 
         public ActionResult CreateLanguageItem([FromBody] Language language)
         {
             using (var db = new DataBaseContext())
@@ -61,7 +61,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut] // Update request
         public ActionResult UpdateLanguageItem([FromBody] Language language)
         {
             using (var db = new DataBaseContext())
@@ -85,7 +85,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete] // Delete request 
         public ActionResult DeleteLanguageItem([FromBody] Language language)
         {
             using (var db = new DataBaseContext())

@@ -60,5 +60,54 @@ namespace Api.Controllers
                 return Ok();
             }
         }
+
+        [HttpPost]
+        public ActionResult UpdateLanguageItem([FromBody] Language language)
+        {
+            using (var db = new DataBaseContext())
+            {
+                bool languageAlreadyExists = db.Languages
+                    .Where(l => l.Title.Equals(language.Title))
+                    .Count() > 0;
+
+                if (languageAlreadyExists)
+                {
+                    db.Language.Update(language);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound(); 
+                }
+
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteLanguageItem([FromBody] Language language)
+        {
+            using (var db = new DataBaseContext())
+            {
+                bool languageAlreadyExists = db.Languages
+                    .Where(l => l.Title.Equals(language.Title))
+                    .Count() > 0;
+
+                if (languageAlreadyExists)
+                {
+                    db.Language.Remove(language);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+
+            }
+        }
+
     }
 }

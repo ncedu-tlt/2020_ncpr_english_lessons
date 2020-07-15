@@ -40,7 +40,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost] // Create request 
         public ActionResult CreateLanguageItem([FromBody] Language language)
         {
             using (var db = new DataBaseContext())
@@ -60,5 +60,54 @@ namespace Api.Controllers
                 return Ok();
             }
         }
+
+        [HttpPut] // Update request
+        public ActionResult UpdateLanguageItem([FromBody] Language language)
+        {
+            using (var db = new DataBaseContext())
+            {
+                bool languageAlreadyExists = db.Languages
+                    .Where(l => l.LanguageId.Equals(language.LanguageId))
+                    .Count() > 0;
+
+                if (languageAlreadyExists)
+                {
+                    db.Languages.Update(language);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound(); 
+                }
+
+
+            }
+        }
+
+        [HttpDelete] // Delete request 
+        public ActionResult DeleteLanguageItem([FromBody] Language language)
+        {
+            using (var db = new DataBaseContext())
+            {
+                bool languageAlreadyExists = db.Languages
+                    .Where(l => l.LanguageId.Equals(language.LanguageId))
+                    .Count() > 0;
+
+                if (languageAlreadyExists)
+                {
+                    db.Languages.Remove(language);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+
+            }
+        }
+
     }
 }

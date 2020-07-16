@@ -1,5 +1,6 @@
 ﻿using Api.Models;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Api.Migrations
 {
@@ -32,8 +33,22 @@ namespace Api.Migrations
                 {
                     table.PrimaryKey("PK_ChatRooms", x => x.ChatID);
                 });
-
-
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    RecordID = table.Column<int>(nullable: false).Annotation("Sqlite:Autoincrement", true),
+                    IDs = table.Column<Chat>(nullable: true),
+                    SenderID = table.Column<int[]>(nullable: true),
+                    SenderMessage = table.Column<string>(nullable: true),
+                    TimeWhenSent = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                  table.PrimaryKey("PK_Messages", x => x.RecordID);
+                }
+                );
+                
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -43,6 +58,10 @@ namespace Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "ChatRooms");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
+
 
         }
     }

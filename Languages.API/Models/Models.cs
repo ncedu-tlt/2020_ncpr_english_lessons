@@ -7,7 +7,7 @@ namespace Api.Models
     {
         public DbSet<Language> Languages { get; set; }
         public DbSet<Chat> ChatRooms { get; set; }
-        //public DbSet<ChatMessages> Messages { get; set; }
+        public DbSet<ChatMessages> Messages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=database.db");

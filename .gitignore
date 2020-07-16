@@ -68,3 +68,7 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+**/bin
+**/obj
+**/database.db

@@ -1,0 +1,30 @@
+$fontFamily: Roboto, serif;
+$fontSizeTitle: 24px;
+$fontSizeList: 16px;
+.test-component{
+  &__wrapper {
+    background: #fff;
+    width: 1200px;
+    margin: 0 auto;
+  }
+  &__title {
+    font-family: $fontFamily;
+    font-size: $fontSizeTitle;
+  }
+  &__list{
+    width: 300px;
+    margin: 0 auto;
+
+    ul {
+      list-style: decimal;
+      font-family: $fontFamily;
+      font-size: $fontSizeList
+    }
+  }
+  &__button{
+
+    &_hidden{
+      display: none;
+    }
+  }
+}

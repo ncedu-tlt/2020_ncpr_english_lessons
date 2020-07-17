@@ -2,23 +2,21 @@ import React from "react";
 import {fromFetch} from "rxjs/fetch";
 import {catchError, switchMap} from "rxjs/operators";
 import "./test.component.scss"
+import { BrowserRouter } from "react-router-dom";
 
 class TestComponent extends React.Component {
 
-    response$;
     #PUBLIC_GATEWAY = "https://ncpr-2020-english-backend.herokuapp.com/";
-    isShowLang = false;
 
     constructor(props) {
         super(props);
         this.state = {
             items: []
         };
-        this.showLang = this.showLang.bind(this);
     }
 
     componentDidMount() {
-        this.response$ = fromFetch(this.#PUBLIC_GATEWAY + "api/languages")
+        fromFetch(this.#PUBLIC_GATEWAY + "api/languages")
             .pipe(
                 switchMap(response => {
                     if (response.ok) {
@@ -32,18 +30,14 @@ class TestComponent extends React.Component {
                     // Network or other error, handle appropriately
                     console.error(err);
                 })
-            );
-    }
-
-    showLang() {
-        this.isShowLang = true;
-        this.response$.subscribe({
-            next: result => this.processRequest(result),
-            complete: () => console.log("Done")
-        });
+            ).subscribe({
+                next: result => this.processRequest(result),
+                complete: () => console.log("Done")
+                        });
     }
 
     processRequest(result) {
+        
         this.setState({
             items: result
         })
@@ -52,25 +46,23 @@ class TestComponent extends React.Component {
 
     render() {
         return (
-            <div className="test-component__wrapper">
-                <div className="test-component__title">
-                    Доступные языки
+                <div className="test-component__wrapper">
+                    <div className="test-component__title">
+                        Доступные языки
+                    </div>
+                    <div className="test-component__list">
+                        <select className={"test-component__selection"} >
+                            <option></option>
+                            {this.state.items.map(
+                                item => (
+                                    <option key={item.languageId}>
+                                        {item.title}
+                                    </option>
+                                )
+                            )}
+                        </select>
+                    </div>
                 </div>
-                <div className="test-component__list">
-                    <ul>
-                        {this.state.items.map(
-                            item => (
-                                <li key={item.languageId}>
-                                    {item.title}
-                                </li>
-                            )
-                        )}
-                    </ul>
-                </div>
-
-                <button className={"test-component__button" + (this.isShowLang? '_hidden': '')} onClick={this.showLang}>Показать доступные языки</button>
-
-            </div>
         );
     }
 

@@ -3,3 +3,6 @@
 
 ##Development environment
 В нашем проекте мы используем **React**, **Sass**.
+
+##Some New Code
+Code

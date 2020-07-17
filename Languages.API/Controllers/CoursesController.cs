@@ -36,8 +36,6 @@ namespace Api.Controllers
                     return NotFound();
                 }
 
-                course.NumberOfVisits += 1;
-                UpdateCourseItem(course);
                 return course;
             }
         }
@@ -64,6 +62,29 @@ namespace Api.Controllers
         }
 
         [HttpPut] 
+        public ActionResult UpdateNumberOfVisits([FromBody] Course course)
+        {
+            using (var db = new DataBaseContext())
+            {
+                bool courseIsAlreadyExists = db.Courses
+                    .Where(l => l.CourseId.Equals(course.CourseId))
+                    .Count() > 0;
+
+                if (courseIsAlreadyExists)
+                {
+                    course.NumberOfVisits += 1;
+                    db.Courses.Update(course);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+        [HttpPut]
         public ActionResult UpdateCourseItem([FromBody] Course course)
         {
             using (var db = new DataBaseContext())
@@ -82,11 +103,8 @@ namespace Api.Controllers
                 {
                     return NotFound();
                 }
-
-
             }
         }
-
 
 
         [HttpDelete] 

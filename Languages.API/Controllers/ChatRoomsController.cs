@@ -5,56 +5,54 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class LanguagesController : Controller
+    public class ChatRoomsController : Controller
     {
         [HttpGet]
-        public ActionResult<List<Language>> GetLanguages()
+        public ActionResult<List<Chat>> GetChatRooms()
         {
             using (var db = new DataBaseContext())
             {
-                List<Language> languages = db.Languages
-                    .OrderBy(b => b.LanguageId)
+                List<Chat> Rooms = db.ChatRooms
+                    .OrderBy(b => b.ChatID)
                     .ToList();
-                   
-                return languages;
+
+                return Rooms;
             }
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Language> GetLanguageItem(long id)
+        public ActionResult<Chat> GetChatRoom(long id)
         {
             using (var db = new DataBaseContext())
             {
-                Language language = db.Languages
-                    .Where(l => l.LanguageId == id)
+                Chat ChatRoom = db.ChatRooms
+                    .Where(l => l.ChatID == id)
                     .First();
 
-                if (language == null)
+                if (ChatRoom == null)
                 {
                     return NotFound();
                 }
 
-                return language;
+                return ChatRoom;
             }
         }
 
         [HttpPost] // Create request 
-        public ActionResult CreateLanguageItem([FromBody] Language language)
+        public ActionResult CreateChatRoom([FromBody] Chat ChatRoom)
         {
             using (var db = new DataBaseContext())
             {
-                bool languageIsAlreadyExists = db.Languages
-                    .Where(l => l.Title.Equals(language.Title))
+                bool ChatRoomAlreadyExists = db.ChatRooms
+                    .Where(l => l.ChatID.Equals(ChatRoom.ChatID))
                     .Count() > 0;
 
-                if (languageIsAlreadyExists)
+                if (ChatRoomAlreadyExists)
                 {
                     return Conflict(); // 409 Conflict
                 }
 
-                db.Add(language);
+                db.Add(ChatRoom);
                 db.SaveChanges();
 
                 return Ok();
@@ -62,41 +60,17 @@ namespace Api.Controllers
         }
 
         [HttpPut] // Update request
-        public ActionResult UpdateLanguageItem([FromBody] Language language)
+        public ActionResult UpdateLanguageItem([FromBody] Chat ChatRoom)
         {
             using (var db = new DataBaseContext())
             {
-                bool languageAlreadyExists = db.Languages
-                    .Where(l => l.LanguageId.Equals(language.LanguageId))
+                bool ChatRoomAlreadyExists = db.ChatRooms
+                    .Where(l => l.ChatID.Equals(ChatRoom.ChatID))
                     .Count() > 0;
 
-                if (languageAlreadyExists)
+                if (ChatRoomAlreadyExists)
                 {
-                    db.Languages.Update(language);
-                    db.SaveChanges();
-                    return Ok();
-                }
-                else
-                {
-                    return NotFound(); 
-                }
-
-
-            }
-        }
-
-        [HttpDelete] // Delete request 
-        public ActionResult DeleteLanguageItem([FromBody] Language language)
-        {
-            using (var db = new DataBaseContext())
-            {
-                bool languageAlreadyExists = db.Languages
-                    .Where(l => l.LanguageId.Equals(language.LanguageId))
-                    .Count() > 0;
-
-                if (languageAlreadyExists)
-                {
-                    db.Languages.Remove(language);
+                    db.ChatRooms.Update(ChatRoom);
                     db.SaveChanges();
                     return Ok();
                 }
@@ -108,6 +82,31 @@ namespace Api.Controllers
 
             }
         }
+
+        [HttpDelete()] // Delete request 
+        public ActionResult DeleteLanguageItem([FromBody] Chat ChatRoom)
+        {
+            using (var db = new DataBaseContext())
+            {
+                bool ChatRoomAlreadyExists = db.ChatRooms
+                    .Where(l => l.ChatID.Equals(ChatRoom.ChatID))
+                    .Count() > 0;
+
+                if (ChatRoomAlreadyExists)
+                {
+                    db.ChatRooms.Remove(ChatRoom);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+
+            }
+        }
+
 
     }
 }

@@ -25,6 +25,7 @@ namespace Api.Migrations
                 {
                     CourseId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    NumberOfVisits = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Requirements = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),

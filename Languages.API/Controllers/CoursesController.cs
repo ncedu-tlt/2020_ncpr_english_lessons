@@ -1,87 +1,115 @@
-﻿using System;
+﻿using Api.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CoursesController : Controller
     {
-        // GET: CoursesController
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult<List<Course>> GetCourses()
         {
-            return View();
-        }
-
-        // GET: CoursesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CoursesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CoursesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            using (var db = new DataBaseContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                List<Course> courses = db.Courses
+                    .OrderBy(b => b.CourseId)
+                    .ToList();
+
+                return courses;
             }
         }
 
-        // GET: CoursesController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet("{id}")]
+        public ActionResult<Course> GetCourseItem(long id)
         {
-            return View();
+            using (var db = new DataBaseContext())
+            {
+                Course course = db.Courses
+                    .Where(l => l.CourseId == id)
+                    .First();
+
+                if (course == null)
+                {
+                    return NotFound();
+                }
+
+                course.NumberOfVisits += 1;
+                UpdateCourseItem(course);
+                return course;
+            }
         }
 
-        // POST: CoursesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpPost] 
+        public ActionResult CreateCourseItem([FromBody] Course course)
         {
-            try
+            using (var db = new DataBaseContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                bool courseIsAlreadyExists = db.Courses
+                    .Where(l => l.Title.Equals(course.Title))
+                    .Count() > 0;
+
+                if (courseIsAlreadyExists)
+                {
+                    return Conflict(); 
+                }
+
+                db.Add(course);
+                db.SaveChanges();
+
+                return Ok();
             }
         }
 
-        // GET: CoursesController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpPut] 
+        public ActionResult UpdateCourseItem([FromBody] Course course)
         {
-            return View();
+            using (var db = new DataBaseContext())
+            {
+                bool courseIsAlreadyExists = db.Courses
+                    .Where(l => l.CourseId.Equals(course.CourseId))
+                    .Count() > 0;
+
+                if (courseIsAlreadyExists)
+                {
+                    db.Courses.Update(course);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+
+            }
         }
 
-        // POST: CoursesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+
+
+        [HttpDelete] 
+        public ActionResult DeleteCourseItem([FromBody] Course course)
         {
-            try
+            using (var db = new DataBaseContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                bool courseIsAlreadyExists = db.Courses
+                    .Where(l => l.CourseId.Equals(course.CourseId))
+                    .Count() > 0;
+
+                if (courseIsAlreadyExists)
+                {
+                    db.Courses.Remove(course);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
         }
+
     }
 }

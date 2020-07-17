@@ -31,7 +31,8 @@ namespace Api.Migrations
                 else
                 {
                     db.Add(new Course { 
-                        CourseId = 1, 
+                        CourseId = 1,
+                        NumberOfVisits = 0,
                         Title = "Английский с нуля",
                         Requirements = "Никаких",
                         Description = "Последовательнное изучание основ языка",
@@ -41,6 +42,7 @@ namespace Api.Migrations
                     db.Add(new Course
                     {
                         CourseId = 2,
+                        NumberOfVisits = 0,
                         Title = "Основы разговорного английского",
                         Requirements = "Intermediate",
                         Description = "Учимся понимать собеседника, поддерживать разговор",

@@ -35,6 +35,9 @@ namespace Api.Migrations
                     .ValueGeneratedOnAdd()
                     .HasColumnType("INTEGER");
 
+                b.Property<int>("NumberOfVisits")
+                    .HasColumnType("INTEGER");
+
                 b.Property<string>("Title")
                     .HasColumnType("TEXT");
 

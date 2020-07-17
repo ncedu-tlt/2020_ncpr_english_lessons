@@ -50,8 +50,8 @@ class TestComponent extends React.Component {
                     <div className="test-component__title">
                         Доступные языки
                     </div>
-                    <div className="test-component__list" onLoad={setTimeout(this.showLang,5000)}>
-                        <select className={"test-component__selection" + (this.isShowLang? '_hidden': '')} >
+                    <div className="test-component__list">
+                        <select className={"test-component__selection"} >
                             <option></option>
                             {this.state.items.map(
                                 item => (

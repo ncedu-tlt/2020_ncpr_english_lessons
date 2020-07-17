@@ -14,12 +14,40 @@ namespace Api.Migrations
                 {
                     return;
                 }
-                db.Add(new Language { Title = "English" });
-                db.Add(new Language { Title = "Russian" });
-                db.Add(new Language { Title = "Espanol" });
-                db.Add(new Language { Title = "German" });
-                db.Add(new Language { Title = "French" });
-                db.SaveChanges();
+                else
+                {
+                  db.Add(new Language { Title = "English" });
+                  db.Add(new Language { Title = "Russian" });
+                  db.Add(new Language { Title = "Espanol" });
+                  db.Add(new Language { Title = "German" });
+                  db.Add(new Language { Title = "French" });
+                  db.SaveChanges();
+                }
+
+                if (db.Courses.Count() != 0)
+                {
+                    return;
+                }
+                else
+                {
+                    db.Add(new Course { 
+                        CourseId = 1, 
+                        Title = "Английский с нуля",
+                        Requirements = "Никаких",
+                        Description = "Последовательнное изучание основ языка",
+                        Plan = "..."
+                    });
+
+                    db.Add(new Course
+                    {
+                        CourseId = 2,
+                        Title = "Основы разговорного английского",
+                        Requirements = "Intermediate",
+                        Description = "Учимся понимать собеседника, поддерживать разговор",
+                        Plan = "..."
+                    });
+                    db.SaveChanges();
+                }
             }
         }
     }

@@ -46,7 +46,6 @@ class TestComponent extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
                 <div className="test-component__wrapper">
                     <div className="test-component__title">
                         Доступные языки
@@ -64,7 +63,6 @@ class TestComponent extends React.Component {
                         </select>
                     </div>
                 </div>
-            </BrowserRouter>
         );
     }
 

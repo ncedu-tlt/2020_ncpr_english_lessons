@@ -23,3 +23,6 @@ out/
 
 ### Visual Studio ###
 obj/
+
+**/bin
+**/database.db

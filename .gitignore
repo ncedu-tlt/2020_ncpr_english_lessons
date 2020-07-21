@@ -23,3 +23,6 @@ out/
 
 ### Visual Studio ###
 obj/
+**/.vs
+**/bin
+**/WinForms.csproj.user

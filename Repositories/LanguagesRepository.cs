@@ -25,6 +25,19 @@ namespace WinForms.Repositories
             var response = await client.PostAsync("https://ncpr-2020-english-backend.herokuapp.com/api/languages", content);
             return response.StatusCode == HttpStatusCode.OK;
         }
+        public static async Task<bool> Update(Language language)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(language), Encoding.Default, "application/json");
+            var response = await client.PutAsync("https://ncpr-2020-english-backend.herokuapp.com/api/languages", content);
+            return response.StatusCode == HttpStatusCode.OK;
+        }
+        public static async Task<bool> Delete(int id)
+        {
+            var response = await client.DeleteAsync("https://ncpr-2020-english-backend.herokuapp.com/api/languages/" + id);
+            return response.StatusCode == HttpStatusCode.OK;
+        }
+
+
     }
 
     class Language

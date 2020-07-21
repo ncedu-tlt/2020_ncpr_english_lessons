@@ -27,8 +27,7 @@ namespace Api.Migrations
                        .Annotation("Sqlite:Autoincrement", true),
                    Login = table.Column<string>(nullable: true),
                    Email = table.Column<string>(nullable: true),
-                   HashPassword = table.Column<string>(nullable: true),
-                   Sault = table.Column<string>(nullable: true),
+                   Password = table.Column<string>(nullable: true),
                    Name = table.Column<string>(nullable: true),
                    Surname = table.Column<string>(nullable: true),
                    Patronymic = table.Column<string>(nullable: true)

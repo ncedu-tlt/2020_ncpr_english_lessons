@@ -33,8 +33,7 @@ namespace Api.Migrations
                     db.Add(new User { 
                         Login = "fox",
                         Email = "fox@gmail.com",
-                        HashPassword = "2131asdasdff$123##",
-                        Sault = "22",
+                        Password = "2131asdasdff$123##",
                         Name = "Moses",
                         Surname = "Samoilov",
                         Patronymic = "Borisovich"
@@ -45,8 +44,7 @@ namespace Api.Migrations
                     {
                         Login = "wolf",
                         Email = "wolf@gmail.com",
-                        HashPassword = "87ds8dsfsd22123451",
-                        Sault = "51",
+                        Password = "87ds8dsfsd22123451",
                         Name = "Matvey",
                         Surname = "Orlov",
                         Patronymic = "Valentinovich"
@@ -57,8 +55,7 @@ namespace Api.Migrations
                     {
                         Login = "cat",
                         Email = "cat@gmail.com",
-                        HashPassword = "8435787s#asdahhxc",
-                        Sault = "11",
+                        Password = "8435787s#asdahhxc",
                         Name = "Ada",
                         Surname = "Alexandrova",
                         Patronymic = "Boguslavovna"
@@ -69,8 +66,7 @@ namespace Api.Migrations
                     {
                         Login = "mouse",
                         Email = "mouse@gmail.com",
-                        HashPassword = "00213xvxsd&&asd23",
-                        Sault = "4",
+                        Password = "00213xvxsd&&asd23",
                         Name = "Olga",
                         Surname = "Gordeeva",
                         Patronymic = "Vsevolodovna"

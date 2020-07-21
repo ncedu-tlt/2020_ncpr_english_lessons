@@ -41,10 +41,7 @@ namespace Api.Migrations
                 b.Property<string>("Email")
                     .HasColumnType("TEXT");
 
-                b.Property<string>("HashPassword")
-                    .HasColumnType("TEXT");
-
-                b.Property<string>("Sault")
+                b.Property<string>("Password")
                     .HasColumnType("TEXT");
 
                 b.Property<string>("Name")

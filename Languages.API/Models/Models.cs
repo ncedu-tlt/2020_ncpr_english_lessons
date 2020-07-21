@@ -22,18 +22,7 @@ namespace Api.Models
         public int UserId { get; set; }
         public string Login { get; set; }
         public string Email { get; set; }
-
-        /// <summary>
-        /// Поле для хранения хэша пароля.
-        /// </summary>
-        public string HashPassword { get; set; }
-
-        /// <summary>
-        /// "Соль", которая хранит рандомное значение.
-        /// Алгоритм хэширования получает на вход пароль и "соль", а выдает хэш пароля.
-        /// Таким образом, пользователи с одинаковыми паролями будут иметь разные хэши паролей.
-        /// </summary>
-        public string Sault { get; set; }        
+        public string Password { get; set; }      
 
         /// <summary>
         /// ФИО

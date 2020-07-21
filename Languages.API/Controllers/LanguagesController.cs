@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace Api.Controllers
                 List<Language> languages = db.Languages
                     .OrderBy(b => b.LanguageId)
                     .ToList();
-                   
+
                 return languages;
             }
         }
@@ -78,32 +79,34 @@ namespace Api.Controllers
                 }
                 else
                 {
-                    return NotFound(); 
+                    return NotFound();
                 }
 
 
             }
         }
 
-        [HttpDelete] // Delete request 
-        public ActionResult DeleteLanguageItem([FromBody] Language language)
+        [HttpDelete("{id}")] // Delete request 
+        public ActionResult<Language> DeleteLanguageItem(long id)
         {
             using (var db = new DataBaseContext())
             {
-                bool languageAlreadyExists = db.Languages
-                    .Where(l => l.LanguageId.Equals(language.LanguageId))
-                    .Count() > 0;
+                bool LanguageExists = db.Languages.Any(l => l.LanguageId == id);
 
-                if (languageAlreadyExists)
+                if (LanguageExists)
                 {
-                    db.Languages.Remove(language);
+                    db.Languages.RemoveRange(db.Languages.Where(l => l.LanguageId == id));
                     db.SaveChanges();
                     return Ok();
                 }
                 else
                 {
+
                     return NotFound();
                 }
+
+
+
 
 
             }

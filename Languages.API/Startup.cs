@@ -63,7 +63,7 @@ namespace Api
                                                 "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/languages/1'>/api/languages/1</a></p>" +
                                                 "<p>POST <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\"})</p>" +
                                                 "<p>PUT <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\" \"languageId\": 6})</p>" +
-                                                "<p>DELETE <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\" \"languageId\": 6})</p>" +
+                                                "<p>DELETE <a target='_blank' rel='noopener noreferrer' href='/api/languages/1'>/api/languages/1</a> </p>" +
 
                                                 "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/reset'>/api/reset</a></p>" +
                                                 "</body>" +

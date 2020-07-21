@@ -72,3 +72,6 @@ fabric.properties
 **/bin
 **/obj
 **/database.db
+**/Api.sln
+**/v16
+**/.dtbcache.v2

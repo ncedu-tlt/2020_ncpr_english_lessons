@@ -29,6 +29,31 @@ namespace Api.Migrations
                     b.ToTable("Languages");
                 });
 
+            modelBuilder.Entity("Api.Models.Course", b =>
+            {
+                b.Property<int>("CourseId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
+
+                b.Property<int>("NumberOfVisits")
+                    .HasColumnType("INTEGER");
+
+                b.Property<string>("Title")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Requirements")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Description")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Plan")
+                    .HasColumnType("TEXT");
+
+                b.HasKey("CourseId");
+
+                b.ToTable("Courses");
+                 });
             modelBuilder.Entity("Api.Models.User", b =>
             {
                 b.Property<int>("UserId")

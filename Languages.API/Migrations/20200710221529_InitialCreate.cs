@@ -20,6 +20,22 @@ namespace Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Courses",
+                columns: table => new
+                {
+                    CourseId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NumberOfVisits = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Requirements = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Plan = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Courses", x => x.CourseId);
+                });
+            migrationBuilder.CreateTable(
                name: "Users",
                columns: table => new
                {
@@ -43,6 +59,8 @@ namespace Api.Migrations
             migrationBuilder.DropTable(
                 name: "Languages");
 
+            migrationBuilder.DropTable(
+                name: "Courses");
             migrationBuilder.DropTable(
                 name: "Users");
         }

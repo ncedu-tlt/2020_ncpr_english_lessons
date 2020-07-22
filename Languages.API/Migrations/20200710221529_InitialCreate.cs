@@ -35,6 +35,23 @@ namespace Api.Migrations
                 {
                     table.PrimaryKey("PK_Courses", x => x.CourseId);
                 });
+            migrationBuilder.CreateTable(
+               name: "Users",
+               columns: table => new
+               {
+                   UserId = table.Column<int>(nullable: false)
+                       .Annotation("Sqlite:Autoincrement", true),
+                   Login = table.Column<string>(nullable: true),
+                   Email = table.Column<string>(nullable: true),
+                   Password = table.Column<string>(nullable: true),
+                   Name = table.Column<string>(nullable: true),
+                   Surname = table.Column<string>(nullable: true),
+                   Patronymic = table.Column<string>(nullable: true)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_Users", x => x.UserId);
+               });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -44,6 +61,8 @@ namespace Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Courses");
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

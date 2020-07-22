@@ -26,11 +26,11 @@ namespace Api.Migrations
 
                 if (db.Courses.Count() != 0)
                 {
-                    return;
+                  return;
                 }
                 else
                 {
-                    db.Add(new Course { 
+                  db.Add(new Course { 
                         CourseId = 1,
                         NumberOfVisits = 0,
                         Title = "Английский с нуля",
@@ -47,6 +47,57 @@ namespace Api.Migrations
                         Requirements = "Intermediate",
                         Description = "Учимся понимать собеседника, поддерживать разговор",
                         Plan = "..."
+                    });
+                   db.SaveChanges();
+                }
+
+
+                if (db.Users.Count() != 0)
+                {
+                    return;
+                }
+                else
+                {
+                    db.Add(new User { 
+                        Login = "fox",
+                        Email = "fox@gmail.com",
+                        Password = "2131asdasdff$123##",
+                        Name = "Moses",
+                        Surname = "Samoilov",
+                        Patronymic = "Borisovich"
+
+                    });
+
+                    db.Add(new User
+                    {
+                        Login = "wolf",
+                        Email = "wolf@gmail.com",
+                        Password = "87ds8dsfsd22123451",
+                        Name = "Matvey",
+                        Surname = "Orlov",
+                        Patronymic = "Valentinovich"
+
+                    });
+
+                    db.Add(new User
+                    {
+                        Login = "cat",
+                        Email = "cat@gmail.com",
+                        Password = "8435787s#asdahhxc",
+                        Name = "Ada",
+                        Surname = "Alexandrova",
+                        Patronymic = "Boguslavovna"
+
+                    });
+
+                    db.Add(new User
+                    {
+                        Login = "mouse",
+                        Email = "mouse@gmail.com",
+                        Password = "00213xvxsd&&asd23",
+                        Name = "Olga",
+                        Surname = "Gordeeva",
+                        Patronymic = "Vsevolodovna"
                     });
                     db.SaveChanges();
                 }

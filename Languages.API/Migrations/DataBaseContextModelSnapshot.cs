@@ -28,6 +28,35 @@ namespace Api.Migrations
 
                     b.ToTable("Languages");
                 });
+
+            modelBuilder.Entity("Api.Models.User", b =>
+            {
+                b.Property<int>("UserId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
+
+                b.Property<string>("Login")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Email")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Password")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Name")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Surname")
+                    .HasColumnType("TEXT");
+
+                b.Property<string>("Patronymic")
+                    .HasColumnType("TEXT");
+
+                b.HasKey("UserId");
+
+                b.ToTable("Users");
+            });
 #pragma warning restore 612, 618
         }
     }

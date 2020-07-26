@@ -8,72 +8,72 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LanguagesController : Controller
+    public class UsersController : Controller
     {
         [HttpGet]
-        public ActionResult<List<Language>> GetLanguages()
+        public ActionResult<List<User>> GetUsers()
         {
             using (var db = new DataBaseContext())
             {
-                List<Language> languages = db.Languages
-                    .OrderBy(b => b.LanguageId)
+                List<User> users = db.Users
+                    .OrderBy(b => b.UserId)
                     .ToList();
 
-                return languages;
+                return users;
             }
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Language> GetLanguageItem(long id)
+        public ActionResult<User> GetUserItem(long id)
         {
             using (var db = new DataBaseContext())
             {
-                Language language = db.Languages
-                    .Where(l => l.LanguageId == id)
+                User user = db.Users
+                    .Where(l => l.UserId == id)
                     .First();
 
-                if (language == null)
+                if (user == null)
                 {
                     return NotFound();
                 }
 
-                return language;
+                return user;
             }
         }
 
-        [HttpPost] // Create request 
-        public ActionResult CreateLanguageItem([FromBody] Language language)
+        [HttpPost] 
+        public ActionResult CreateUserItem([FromBody] User user)
         {
             using (var db = new DataBaseContext())
             {
-                bool languageIsAlreadyExists = db.Languages
-                    .Where(l => l.Title.Equals(language.Title))
+                bool userIsAlreadyExists = db.Users
+                    .Where(l => l.Login.Equals(user.Login))
                     .Count() > 0;
 
-                if (languageIsAlreadyExists)
+                if (userIsAlreadyExists)
                 {
                     return Conflict(); // 409 Conflict
                 }
 
-                db.Add(language);
+                db.Add(user);
                 db.SaveChanges();
 
                 return Ok();
             }
         }
 
-        [HttpPut] // Update request
-        public ActionResult UpdateLanguageItem([FromBody] Language language)
+        [HttpPut]
+        public ActionResult UpdateUserItem([FromBody] User user)
         {
             using (var db = new DataBaseContext())
             {
-                bool languageAlreadyExists = db.Languages
-                    .Where(l => l.LanguageId.Equals(language.LanguageId))
+                bool userAlreadyExists = db.Users
+                    .Where(l => l.UserId.Equals(user.UserId))
                     .Count() > 0;
 
-                if (languageAlreadyExists)
+                if (userAlreadyExists)
                 {
-                    db.Languages.Update(language);
+                    db.Users.Update(user);
                     db.SaveChanges();
                     return Ok();
                 }
@@ -81,21 +81,19 @@ namespace Api.Controllers
                 {
                     return NotFound();
                 }
-
-
             }
         }
 
-        [HttpDelete("{id}")] // Delete request 
-        public ActionResult<Language> DeleteLanguageItem(long id)
+        [HttpDelete("{id}")] 
+        public ActionResult<User> DeleteuserItem(long id)
         {
             using (var db = new DataBaseContext())
             {
-                bool LanguageExists = db.Languages.Any(l => l.LanguageId == id);
+                bool UserLanguageExists = db.Users.Any(l => l.UserId == id);
 
-                if (LanguageExists)
+                if (UserLanguageExists)
                 {
-                    db.Languages.RemoveRange(db.Languages.Where(l => l.LanguageId == id));
+                    db.Users.RemoveRange(db.Users.Where(l => l.UserId == id));
                     db.SaveChanges();
                     return Ok();
                 }
@@ -104,11 +102,6 @@ namespace Api.Controllers
 
                     return NotFound();
                 }
-
-
-
-
-
             }
         }
 

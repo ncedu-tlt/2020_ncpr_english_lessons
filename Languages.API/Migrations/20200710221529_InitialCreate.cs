@@ -22,6 +22,7 @@ namespace Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+
                 name: "ChatRooms",
                 columns: table => new
                 {
@@ -50,6 +51,40 @@ namespace Api.Migrations
                     table.PrimaryKey("PK_Messages", x => x.RecordID);
                 });
 
+              migrationBuilder.CreateTable(
+                name: "Courses",
+                columns: table => new
+                {
+                    CourseId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NumberOfVisits = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Requirements = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Plan = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Courses", x => x.CourseId);
+                });
+            migrationBuilder.CreateTable(
+               name: "Users",
+               columns: table => new
+               {
+                   UserId = table.Column<int>(nullable: false)
+                       .Annotation("Sqlite:Autoincrement", true),
+                   Login = table.Column<string>(nullable: true),
+                   Email = table.Column<string>(nullable: true),
+                   Password = table.Column<string>(nullable: true),
+                   Name = table.Column<string>(nullable: true),
+                   Surname = table.Column<string>(nullable: true),
+                   Patronymic = table.Column<string>(nullable: true)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_Users", x => x.UserId);
+               });
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -58,11 +93,17 @@ namespace Api.Migrations
                 name: "Languages");
 
             migrationBuilder.DropTable(
+
                 name: "ChatRooms");
 
             migrationBuilder.DropTable(
                 name: "Messages");
 
+            migrationBuilder.DropTable(
+                name: "Courses");
+                
+            migrationBuilder.DropTable(
+                name: "Users");
 
         }
     }

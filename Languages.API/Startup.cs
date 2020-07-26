@@ -59,13 +59,19 @@ namespace Api
         private const string ROOT_PAGE_HTML = "<!DOCTYPE html>" +
                                                 "<html>" +
                                                 "<body>" +
+                                                "<p>Languages</p>" +
                                                 "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a></p>" +
                                                 "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/languages/1'>/api/languages/1</a></p>" +
                                                 "<p>POST <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\"})</p>" +
                                                 "<p>PUT <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\" \"languageId\": 6})</p>" +
-                                                "<p>DELETE <a target='_blank' rel='noopener noreferrer' href='/api/languages'>/api/languages</a> (BODY: \"Content-Type: application/json\" {\"title\" : \"newLanguage\" \"languageId\": 6})</p>" +
+                                                "<p>DELETE <a target='_blank' rel='noopener noreferrer' href='/api/languages/1'>/api/languages/1</a> </p>" +
 
                                                 "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/reset'>/api/reset</a></p>" +
+
+                                                "<p>Courses</p>" +
+                                                "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/courses'>/api/courses</a></p>" +
+                                                "<p>GET <a target='_blank' rel='noopener noreferrer' href='/api/courses/1'>/api/courses/1</a></p>" +
+                                                
                                                 "</body>" +
                                                 "</html>";
     }

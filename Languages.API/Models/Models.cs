@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Api.Models
 {
@@ -28,11 +29,14 @@ namespace Api.Models
 
     public class ChatMessages
     {
+        [Key]
         public int RecordID { get; set; }
-        public static Chat IDs { get; set; }
 
-        public int[] SenderID = { IDs.ProfID, IDs.StudID };
+        public int Chat { get; set; }
+        public bool IsProf { get; set; }
+        public int Sender { get; set; }
         public string SenderMessage { get; set; }
         public DateTime TimeWhenSent { get; set; }
     }
 }
+

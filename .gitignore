@@ -75,3 +75,4 @@ fabric.properties
 **/database.db
 **/.vs
 **/*.csproj.user
+**/Api.sln

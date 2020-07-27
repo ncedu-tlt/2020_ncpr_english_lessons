@@ -41,7 +41,7 @@ namespace Api.Models
         public int Sender { get; set; }
         public string SenderMessage { get; set; }
         public DateTime TimeWhenSent { get; set; }
-
+    }
     public class Course
     {
         public int CourseId { get; set; }

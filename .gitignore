@@ -75,6 +75,10 @@ fabric.properties
 **/database.db
 **/.vs
 **/*.csproj.user
+
+
+
 **/Api.sln
 **/v16
 **/.dtbcache.v2
+

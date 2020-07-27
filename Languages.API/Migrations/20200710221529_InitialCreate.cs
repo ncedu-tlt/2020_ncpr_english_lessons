@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Api.Models;
+using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Api.Migrations
 {
@@ -20,6 +22,36 @@ namespace Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+
+                name: "ChatRooms",
+                columns: table => new
+                {
+                    ChatID = table.Column<int>(nullable: false).Annotation("Sqlite:Autoincrement", true),
+                    ProfID = table.Column<int>(nullable: true),
+                    StudID = table.Column<int>(nullable: true),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChatRooms", x => x.ChatID);
+                });
+
+            migrationBuilder.CreateTable(
+               name: "Messages",
+                columns: table => new
+                {
+                    RecordID = table.Column<int>(nullable: false).Annotation("Sqlite:Autoincrement", true),
+                    Chat = table.Column<int>(nullable: true),
+                    IsProf = table.Column<bool>(nullable: true),
+                    Sender = table.Column<int>(nullable: true),
+                    SenderMessage = table.Column<string>(nullable: true),
+                    TimeWhenSent = table.Column<DateTime>(nullable: true)
+                },
+               constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.RecordID);
+                });
+
+              migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
@@ -52,6 +84,7 @@ namespace Api.Migrations
                {
                    table.PrimaryKey("PK_Users", x => x.UserId);
                });
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -60,9 +93,18 @@ namespace Api.Migrations
                 name: "Languages");
 
             migrationBuilder.DropTable(
+
+                name: "ChatRooms");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
+
+            migrationBuilder.DropTable(
                 name: "Courses");
+                
             migrationBuilder.DropTable(
                 name: "Users");
+
         }
     }
 }

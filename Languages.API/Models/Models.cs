@@ -1,12 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Api.Models
 {
     public class DataBaseContext : DbContext
     {
         public DbSet<Language> Languages { get; set; }
+        public DbSet<Chat> ChatRooms { get; set; }
+        public DbSet<ChatMessages> Messages { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<User> Users { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=database.db");
@@ -18,6 +23,24 @@ namespace Api.Models
         public string Title { get; set; }
     }
 
+
+    public class Chat
+    {
+        public int ChatID { get; set; }
+        public int ProfID { get; set; }
+        public int StudID { get; set; }
+    }
+
+    public class ChatMessages
+    {
+        [Key]
+        public int RecordID { get; set; }
+
+        public int Chat { get; set; }
+        public bool IsProf { get; set; }
+        public int Sender { get; set; }
+        public string SenderMessage { get; set; }
+        public DateTime TimeWhenSent { get; set; }
 
     public class Course
     {
@@ -44,3 +67,4 @@ namespace Api.Models
         public string Patronymic { get; set; }
     }
 }
+

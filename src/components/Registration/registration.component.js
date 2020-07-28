@@ -12,6 +12,7 @@ class RegistrationComponent extends React.Component {
             <div className="registration-component__title">
                 <h1>Регистрация</h1>
             </div>
+                <div className="registration-component__text">
                 <p>
                     <label htmlFor="Имя пользователи" className="uname"> Введите электронную почту</label>
                     <input id="username" name="username" required="Обязательное" type="text"
@@ -27,7 +28,8 @@ class RegistrationComponent extends React.Component {
                     <input id="password" name="password" required="Обязательное" type="password"
                            placeholder="Повторите пароль"/>
                 </p>
-                <div className="test-component__button">
+                </div>
+                <div className="registration-component__button">
                 <input type="submit" value="Создать" />
                 </div>
             </div>

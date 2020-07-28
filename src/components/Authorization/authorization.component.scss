@@ -1,13 +1,40 @@
-$fontFamily: Roboto, serif;
+$fontFamily: Georgia, serif;
 $fontSizeTitle: 24px;
-$fontSizeList: 16px;
+$fontSizeList: 17px;
 .authorization-component{
   &__title {
     font-family: $fontFamily;
     font-size: $fontSizeTitle;
+    font-weight: normal;
+    line-height: 48px;
+    margin: 0 0 50px;
+    text-align: center;
+    text-shadow: 1px 1px 2px #082b34;
+  }
+  &__text{
+    input{
+      margin-left: 17px;
+    }
+    font-family: $fontFamily;
+    font-size: $fontSizeList;
   }
   &__button {
-    margin-left: 20px;
+    input{
+      margin-left: 17px;
+      background-color: #f35372;
+      color: white;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+      transition: 0.5s;
+      border: none;
+    }
+
     &_hidden {
       display: none;
     }

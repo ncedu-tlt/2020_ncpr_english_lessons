@@ -1,0 +1,15 @@
+$fontFamily: Roboto, serif;
+$fontSizeTitle: 24px;
+$fontSizeList: 16px;
+.authorization-component{
+  &__title {
+    font-family: $fontFamily;
+    font-size: $fontSizeTitle;
+  }
+  &__button {
+    margin-left: 20px;
+    &_hidden {
+      display: none;
+    }
+  }
+}

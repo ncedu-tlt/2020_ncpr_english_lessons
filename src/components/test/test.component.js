@@ -2,7 +2,8 @@ import React from "react";
 import {fromFetch} from "rxjs/fetch";
 import {catchError, switchMap} from "rxjs/operators";
 import "./test.component.scss"
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import AccountPage from './test.newpage'
 
 class TestComponent extends React.Component {
 

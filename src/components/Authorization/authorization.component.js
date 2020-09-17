@@ -1,5 +1,6 @@
 import React from "react";
 import "./authorization.component.scss"
+import { Link } from "react-router-dom";
 
 class AuthorizationComponent extends React.Component {
     constructor(props) {
@@ -10,23 +11,23 @@ class AuthorizationComponent extends React.Component {
         return (
             <div>
                 <div className="authorization-component__title">
-                <h1>Вход</h1>
+                    <h1>Вход</h1>
                 </div>
                 <div className="authorization-component__text">
-                <p>
-                    <label htmlFor="Имя пользователи" className="uname"> Введите электронную почту</label>
-                    <input id="username" name="username" required="Обязательное" type="text"
-                           placeholder="mymail@mail.com"/>
-                </p>
-                <p>
-                    <label htmlFor="Пароль" className="youpasswd">Введите пароль</label>
-                    <input id="password" name="password" required="Обязательное" type="password"/>
-                </p>
+                    <p>
+                        <label htmlFor="Имя пользователи" className="uname"> Введите электронную почту</label>
+                        <input id="username" name="username" required="Обязательное" type="text"
+                            placeholder="mymail@mail.com"/>
+                    </p>
+                    <p>
+                        <label htmlFor="Пароль" className="youpasswd">Введите пароль</label>
+                        <input id="password" name="password" required="Обязательное" type="password"/>
+                    </p>
                 </div>
                 <div className="authorization-component__button">
-                <p><input type="submit" value="Вход" />
-                <input type="submit" value="Регистрация" /></p>
-                <p><input type="submit" value="Забыли пароль?" /></p>
+                    <p><input type="submit" value="Вход" />
+                    <Link to='/registration'><input type="submit" value="Регистрация" /></Link></p>
+                    <p><input type="submit" value="Забыли пароль?" /></p>
                 </div>
             </div>
         );
